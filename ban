@@ -4,7 +4,7 @@ local userInputService = game:GetService("UserInputService")
 -- Function to handle key press
 local function onKeyPress(input, gameProcessed)
     if not gameProcessed and input.KeyCode == Enum.KeyCode.P then
-        player:Kick("You kicked yourself!")
+        player:Kick("bitch, the ban script is very very secret")
     end
 end
 
