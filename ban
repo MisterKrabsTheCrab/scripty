@@ -1,0 +1,11 @@
+local player = game.Players.LocalPlayer
+local userInputService = game:GetService("UserInputService")
+
+local function onKeyPress(input, gameProcessed)
+    if gameProcessed then return end -- Ignore inputs already handled by the game
+    if input.KeyCode == Enum.KeyCode.P then
+        player:Kick("dumbass thought")
+    end
+end
+
+userInputService.InputBegan:Connect(onKeyPress)
