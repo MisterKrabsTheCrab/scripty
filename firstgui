@@ -1,0 +1,26 @@
+local teleportService = game:GetService("TeleportService")
+local player = game.Players.LocalPlayer
+
+local doorsGameId = 6516141723 -- DOORS place ID
+
+-- Create the ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "DoorsTeleportGui"
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+-- Create the TextButton
+local button = Instance.new("TextButton")
+button.Name = "TeleportButton"
+button.Size = UDim2.new(0, 200, 0, 50) -- Size: 200x50 pixels
+button.Position = UDim2.new(0.5, -100, 0.5, -25) -- Centered on the screen
+button.BackgroundColor3 = Color3.fromRGB(0, 170, 255) -- Blue background
+button.TextColor3 = Color3.new(1, 1, 1) -- White text
+button.TextSize = 20
+button.Font = Enum.Font.SourceSansBold
+button.Text = "Press?"
+button.Parent = screenGui
+
+-- Handle button click
+button.MouseButton1Click:Connect(function()
+    teleportService:Teleport(doorsGameId)
+end)
