@@ -1,27 +1,57 @@
--- Load Rayfield Library
-local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+-- Load the Orion Library
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
--- Create Rayfield Window
-local Window = Rayfield:CreateWindow({
-    Name = "Teleporter",
-    LoadingTitle = "Teleport GUI",
-    LoadingSubtitle = "Powered by Rayfield",
-    ConfigurationSaving = {
-        Enabled = false -- Disable saving for simplicity
-    },
-    Discord = {
-        Enabled = false -- No Discord integration for this use case
-    }
+-- Create Orion Window
+local Window = OrionLib:MakeWindow({
+    Name = "Game Teleporter",
+    IntroEnabled = true,
+    IntroText = "Welcome to the Teleport Hub!",
+    HidePremium = false,
+    SaveConfig = false,
+    ConfigFolder = "OrionTeleportConfig"
 })
 
--- Game ID for DOORS
-local doorsGameId = 6516141723
+-- Services
 local teleportService = game:GetService("TeleportService")
 
--- Add a Button to the Rayfield Window
-Window:CreateButton({
-    Name = "tp",
+-- Game IDs
+local doorsGameId = 6516141723 -- DOORS Game ID
+local shrimpGameId = 8571899817 -- Shrimp Game ID
+
+-- Add a Tab
+local Tab = Window:MakeTab({
+    Name = "Main",
+    Icon = "rbxassetid://4483345998", -- Icon for the tab
+    PremiumOnly = false
+})
+
+-- Add "Play DOORS" Button
+Tab:AddButton({
+    Name = "Play DOORS",
     Callback = function()
         teleportService:Teleport(doorsGameId)
     end
 })
+
+-- Add "Play Shrimp Game" Button with Message and Delay
+Tab:AddButton({
+    Name = "Play Shrimp Game",
+    Callback = function()
+        -- Display a message
+        OrionLib:MakeNotification({
+            Name = "Shrimpy time...",
+            Content = "Get ready! You will be teleported to Shrimp Game in 5 seconds.",
+            Image = "rbxassetid://4483345998", -- Icon for notification
+            Time = 5 -- Time for notification display
+        })
+
+        -- Wait for 5 seconds
+        wait(5)
+
+        -- Teleport the player
+        teleportService:Teleport(shrimpGameId)
+    end
+})
+
+-- Initialize the Orion Interface
+OrionLib:Init()
