@@ -3,23 +3,24 @@ local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shle
 
 -- Create Rayfield Window
 local Window = Rayfield:CreateWindow({
-    Name = "Skibidi",
-    LoadingTitle = "Rayfield UI Library",
-    LoadingSubtitle = "by your homie",
+    Name = "Teleporter",
+    LoadingTitle = "Teleport GUI",
+    LoadingSubtitle = "Powered by Rayfield",
     ConfigurationSaving = {
-        Enabled = false
+        Enabled = false -- Disable saving for simplicity
     },
     Discord = {
-        Enabled = false
+        Enabled = false -- No Discord integration for this use case
     }
 })
 
--- Add a button to the GUI
-local doorsGameId = 6516141723 -- DOORS place ID
+-- Game ID for DOORS
+local doorsGameId = 6516141723
 local teleportService = game:GetService("TeleportService")
 
+-- Add a Button to the Rayfield Window
 Window:CreateButton({
-    Name = "Press?",
+    Name = "tp",
     Callback = function()
         teleportService:Teleport(doorsGameId)
     end
